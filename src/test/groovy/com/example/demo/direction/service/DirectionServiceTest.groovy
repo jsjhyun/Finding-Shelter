@@ -3,14 +3,14 @@ package com.example.demo.direction.service
 import com.example.demo.api.dto.DocumentDto
 import com.example.demo.api.service.KakaoCategorySearchService
 import com.example.demo.direction.repository.DirectionRepository
-import com.example.demo.pharmacy.dto.PharmacyDto
-import com.example.demo.pharmacy.service.PharmacySearchService
+import com.example.demo.shelter.dto.ShelterDto
+import com.example.demo.shelter.service.ShelterSearchService
 import spock.lang.Specification
 import spock.lang.Subject
 
 class DirectionServiceTest extends Specification {
 
-    private PharmacySearchService pharmacySearchService = Mock()
+    private ShelterSearchService shelterSearchService = Mock()
     private DirectionRepository directionRepository = Mock()
     private Base62Service base62Service = Mock()
 
@@ -18,26 +18,26 @@ class DirectionServiceTest extends Specification {
 
     @Subject
     private DirectionService directionService = new DirectionService(
-            pharmacySearchService, directionRepository,
+            shelterSearchService, directionRepository,
             base62Service, kakaoCategorySearchService)
 
-    private List<PharmacyDto> pharmacyList
+    private List<ShelterDto> shelterList
 
     def setup() {
 
-        pharmacyList = new ArrayList<>()
-        pharmacyList.addAll(
-                PharmacyDto.builder()
+        shelterList = new ArrayList<>()
+        shelterList.addAll(
+                ShelterDto.builder()
                         .id(1L)
-                        .pharmacyName("돌곶이온누리약국")
-                        .pharmacyAddress("주소1")
+                        .shelterName("돌곶이온누리약국")
+                        .shelterAddress("주소1")
                         .latitude(37.61040424)
                         .longitude(127.0569046)
                         .build(),
-                PharmacyDto.builder()
+                ShelterDto.builder()
                         .id(2L)
-                        .pharmacyName("호수온누리약국")
-                        .pharmacyAddress("주소2")
+                        .shelterName("호수온누리약국")
+                        .shelterAddress("주소2")
                         .latitude(37.60894036)
                         .longitude(127.029052)
                         .build()
@@ -73,25 +73,25 @@ class DirectionServiceTest extends Specification {
                 .build()
 
         when:
-        pharmacySearchService.searchPharmacyDtoList() >> pharmacyList
+        shelterSearchService.searchShelterDtoList() >> shelterList
 
         def results = directionService.buildDirectionList(documentDto)
         then:
 
         results.size() == 2
-        results.get(0).targetPharmacyName == "호수온누리약국"
-        results.get(1).targetPharmacyName == "돌곶이온누리약국"
+        results.get(0).targetShelterName == "호수온누리약국"
+        results.get(1).targetShelterName == "돌곶이온누리약국"
         String.format("%.1f", results.get(0).distance) == "1.6"
         String.format("%.1f", results.get(1).distance) == "2.4"
     }
 
     def "buildDirectionList -  정해진 반경 10km 내에 검색이 되는지 확인"() {
         given:
-        pharmacyList.add(
-                PharmacyDto.builder()
+        shelterList.add(
+                ShelterDto.builder()
                         .id(3L)
-                        .pharmacyName("경기약국")
-                        .pharmacyAddress("주소3")
+                        .shelterName("경기약국")
+                        .shelterAddress("주소3")
                         .latitude(37.3825107393401)
                         .longitude(127.236707811313)
                         .build())
@@ -107,13 +107,13 @@ class DirectionServiceTest extends Specification {
                 .build()
 
         when:
-        pharmacySearchService.searchPharmacyDtoList() >> pharmacyList
+        shelterSearchService.searchShelterDtoList() >> shelterList
 
         def results = directionService.buildDirectionList(documentDto)
         then:
 
         results.size() == 2
-        results.get(0).targetPharmacyName == "호수온누리약국"
-        results.get(1).targetPharmacyName == "돌곶이온누리약국"
+        results.get(0).targetShelterName == "호수온누리약국"
+        results.get(1).targetShelterName == "돌곶이온누리약국"
     }
 }

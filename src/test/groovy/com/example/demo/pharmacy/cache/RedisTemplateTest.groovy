@@ -1,4 +1,4 @@
-package com.example.demo.pharmacy.cache
+package com.example.demo.shelter.cache
 
 import com.example.demo.AbstractIntegrationContainerBaseTest
 import org.springframework.beans.factory.annotation.Autowired

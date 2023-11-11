@@ -1,52 +1,52 @@
-package com.example.demo.pharmacy.cache
+package com.example.demo.shelter.cache
 
 import com.example.demo.AbstractIntegrationContainerBaseTest
-import com.example.demo.pharmacy.dto.PharmacyDto
+import com.example.demo.shelter.dto.ShelterDto
 import org.springframework.beans.factory.annotation.Autowired
 
-class PharmacyRedisTemplateServiceTest extends AbstractIntegrationContainerBaseTest {
+class ShelterRedisTemplateServiceTest extends AbstractIntegrationContainerBaseTest {
 
     @Autowired
-    private PharmacyRedisTemplateService pharmacyRedisTemplateService
+    private ShelterRedisTemplateService shelterRedisTemplateService
 
     def setup() {
-        pharmacyRedisTemplateService.findAll()
+        shelterRedisTemplateService.findAll()
             .forEach(dto -> {
-                pharmacyRedisTemplateService.delete(dto.getId())
+                shelterRedisTemplateService.delete(dto.getId())
             })
     }
 
     def "save success"() {
         given:
-        String pharmacyName = "name"
-        String pharmacyAddress = "address"
-        PharmacyDto dto =
-                PharmacyDto.builder()
+        String shelterName = "name"
+        String shelterAddress = "address"
+        ShelterDto dto =
+                ShelterDto.builder()
                         .id(1L)
-                        .pharmacyName(pharmacyName)
-                        .pharmacyAddress(pharmacyAddress)
+                        .shelterName(shelterName)
+                        .shelterAddress(shelterAddress)
                         .build()
 
         when:
-        pharmacyRedisTemplateService.save(dto)
-        List<PharmacyDto> result = pharmacyRedisTemplateService.findAll()
+        shelterRedisTemplateService.save(dto)
+        List<ShelterDto> result = shelterRedisTemplateService.findAll()
 
         then:
         result.size() == 1
         result.get(0).id == 1L
-        result.get(0).pharmacyName == pharmacyName
-        result.get(0).pharmacyAddress == pharmacyAddress
+        result.get(0).shelterName == shelterName
+        result.get(0).shelterAddress == shelterAddress
     }
 
     def "success fail"() {
         given:
-        PharmacyDto dto =
-                PharmacyDto.builder()
+        ShelterDto dto =
+                ShelterDto.builder()
                         .build()
 
         when:
-        pharmacyRedisTemplateService.save(dto)
-        List<PharmacyDto> result = pharmacyRedisTemplateService.findAll()
+        shelterRedisTemplateService.save(dto)
+        List<ShelterDto> result = shelterRedisTemplateService.findAll()
 
         then:
         result.size() == 0
@@ -54,19 +54,19 @@ class PharmacyRedisTemplateServiceTest extends AbstractIntegrationContainerBaseT
 
     def "delete"() {
         given:
-        String pharmacyName = "name"
-        String pharmacyAddress = "address"
-        PharmacyDto dto =
-                PharmacyDto.builder()
+        String shelterName = "name"
+        String shelterAddress = "address"
+        ShelterDto dto =
+                ShelterDto.builder()
                         .id(1L)
-                        .pharmacyName(pharmacyName)
-                        .pharmacyAddress(pharmacyAddress)
+                        .shelterName(shelterName)
+                        .shelterAddress(shelterAddress)
                         .build()
 
         when:
-        pharmacyRedisTemplateService.save(dto)
-        pharmacyRedisTemplateService.delete(dto.getId())
-        def result = pharmacyRedisTemplateService.findAll()
+        shelterRedisTemplateService.save(dto)
+        shelterRedisTemplateService.delete(dto.getId())
+        def result = shelterRedisTemplateService.findAll()
 
         then:
         result.size() == 0

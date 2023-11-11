@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Pharmacy Recommendation System</title>
+    <title>Shelter Recommendation System</title>
     <!--부트스트랩 css 추가-->
     <link rel="stylesheet" href="/css/lib/bootstrap.min.css">
 
@@ -20,7 +20,7 @@
 </head>
 <body>
 <div>
-    <h2 class="h2-title">Pharmacy Recommendation Results</h2>
+    <h2 class="h2-title">Shelter Recommendation Results</h2>
 </div>
 
     <table class="table table-hover">
@@ -33,8 +33,8 @@
         </tr>
         {{#each outputFormList}}
         <tr>
-            <td>{{pharmacyName}}</td>
-            <td>{{pharmacyAddress}}</td>
+            <td>{{shelterName}}</td>
+            <td>{{shelterAddress}}</td>
             <td>{{distance}}</td>
             <td><a href="{{directionUrl}}">{{directionUrl}}</a></td>
             <td><a href="{{roadViewUrl}}">{{roadViewUrl}}</a></td>

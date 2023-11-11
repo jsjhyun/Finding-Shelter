@@ -22,7 +22,7 @@ public class Direction extends BaseTimeEntity {
     private double inputLatitude;
     private double inputLongitude;
 
-    private String targetPharmacyName;
+    private String targetShelterName;
     private String targetAddress;
     private double targetLatitude;
     private double targetLongitude;

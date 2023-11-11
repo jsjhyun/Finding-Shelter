@@ -1,7 +1,7 @@
-package com.example.demo.pharmacy.service;
+package com.example.demo.shelter.service;
 
-import com.example.demo.pharmacy.entity.Pharmacy;
-import com.example.demo.pharmacy.repository.PharmacyRepository;
+import com.example.demo.shelter.entity.Shelter;
+import com.example.demo.shelter.repository.ShelterRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,22 +16,22 @@ import java.util.Objects;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class PharmacyRepositoryService {
+public class ShelterRepositoryService {
 
-    private final PharmacyRepository pharmacyRepository;
+    private final ShelterRepository shelterRepository;
 
     // self invocation test
-    public void bar(List<Pharmacy> pharmacyList) {
+    public void bar(List<Shelter> shelterList) {
         log.info("bar CurrentTransactionName: "+ TransactionSynchronizationManager.getCurrentTransactionName());
-        foo(pharmacyList);
+        foo(shelterList);
     }
 
     // self invocation test
     @Transactional
-    public void foo(List<Pharmacy> pharmacyList) {
+    public void foo(List<Shelter> shelterList) {
         log.info("foo CurrentTransactionName: "+ TransactionSynchronizationManager.getCurrentTransactionName());
-        pharmacyList.forEach(pharmacy -> {
-           pharmacyRepository.save(pharmacy);
+        shelterList.forEach(shelter -> {
+           shelterRepository.save(shelter);
            throw new RuntimeException("error");
         });
     }
@@ -40,42 +40,42 @@ public class PharmacyRepositoryService {
     // read only test
     @Transactional(readOnly = true)
     public void startReadOnlyMethod(Long id) {
-        pharmacyRepository.findById(id).ifPresent(pharmacy ->
-                pharmacy.changePharmacyAddress("서울 특별시 광진구"));
+        shelterRepository.findById(id).ifPresent(shelter ->
+                shelter.changeShelterAddress("서울 특별시 광진구"));
     }
 
 
     @Transactional
-    public List<Pharmacy> saveAll(List<Pharmacy> pharmacyList) {
-        if(CollectionUtils.isEmpty(pharmacyList)) return Collections.emptyList();
-        return pharmacyRepository.saveAll(pharmacyList);
+    public List<Shelter> saveAll(List<Shelter> shelterList) {
+        if(CollectionUtils.isEmpty(shelterList)) return Collections.emptyList();
+        return shelterRepository.saveAll(shelterList);
     }
 
     @Transactional
     public void updateAddress(Long id, String address) {
-        Pharmacy entity = pharmacyRepository.findById(id).orElse(null);
+        Shelter entity = shelterRepository.findById(id).orElse(null);
 
         if(Objects.isNull(entity)) {
-            log.error("[PharmacyRepositoryService updateAddress] not found id : {}", id);
+            log.error("[ShelterRepositoryService updateAddress] not found id : {}", id);
             return;
         }
-        entity.changePharmacyAddress(address);
+        entity.changeShelterAddress(address);
     }
 
     // for test
     public void updateAddressWithoutTransaction(Long id, String address) {
-        Pharmacy entity = pharmacyRepository.findById(id).orElse(null);
+        Shelter entity = shelterRepository.findById(id).orElse(null);
 
         if(Objects.isNull(entity)) {
-            log.error("[PharmacyRepositoryService updateAddress] not found id : {}", id);
+            log.error("[ShelterRepositoryService updateAddress] not found id : {}", id);
             return;
         }
-        entity.changePharmacyAddress(address);
+        entity.changeShelterAddress(address);
     }
 
     @Transactional(readOnly = true)
-    public List<Pharmacy> findAll() {
-        return pharmacyRepository.findAll();
+    public List<Shelter> findAll() {
+        return shelterRepository.findAll();
     }
 
 

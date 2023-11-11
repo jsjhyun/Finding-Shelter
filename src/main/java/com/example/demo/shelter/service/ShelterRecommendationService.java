@@ -1,4 +1,4 @@
-package com.example.demo.pharmacy.service;
+package com.example.demo.shelter.service;
 
 import com.example.demo.api.dto.DocumentDto;
 import com.example.demo.api.dto.KakaoApiResponseDto;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class PharmacyRecommendationService {
+public class ShelterRecommendationService {
 
     private static final String ROAD_VIEW_BASE_URL = "https://map.kakao.com/link/roadview/";
 
@@ -29,15 +29,15 @@ public class PharmacyRecommendationService {
     private final DirectionService directionService;
     private final Base62Service base62Service;
 
-    @Value("${pharmacy.recommendation.base.url}")
+    @Value("${shelter.recommendation.base.url}")
     private String baseUrl;
 
-    public List<OutputDto> recommendPharmacyList(String address) {
+    public List<OutputDto> recommendShelterList(String address) {
 
         KakaoApiResponseDto kakaoApiResponseDto = kakaoAddressSearchService.requestAddressSearch(address);
-
+        //List로 변환하기 전 여기서 주소를 찾는다.
         if (Objects.isNull(kakaoApiResponseDto) || CollectionUtils.isEmpty(kakaoApiResponseDto.getDocumentList())) {
-            log.error("[PharmacyRecommendationService.recommendPharmacyList fail] Input address: {}", address);
+            log.error("[ShelterRecommendationService.recommendShelterList fail] Input address: {}", address);
             return Collections.emptyList();
         }
 
@@ -55,8 +55,8 @@ public class PharmacyRecommendationService {
     private OutputDto convertToOutputDto(Direction direction) {
 
         return OutputDto.builder()
-                .pharmacyName(direction.getTargetPharmacyName())
-                .pharmacyAddress(direction.getTargetAddress())
+                .shelterName(direction.getTargetShelterName())
+                .shelterAddress(direction.getTargetAddress())
                 .directionUrl(baseUrl + base62Service.encodeDirectionId(direction.getId()))
                 .roadViewUrl(ROAD_VIEW_BASE_URL + direction.getTargetLatitude() + "," + direction.getTargetLongitude())
                 .distance(String.format("%.2f km", direction.getDistance()))

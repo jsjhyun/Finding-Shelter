@@ -1,58 +1,58 @@
-package com.example.demo.pharmacy.service
+package com.example.demo.shelter.service
 
-import com.example.demo.pharmacy.cache.PharmacyRedisTemplateService
-import com.example.demo.pharmacy.dto.PharmacyDto
-import com.example.demo.pharmacy.entity.Pharmacy
+import com.example.demo.shelter.cache.ShelterRedisTemplateService
+import com.example.demo.shelter.dto.ShelterDto
+import com.example.demo.shelter.entity.Shelter
 import com.google.common.collect.Lists
 import spock.lang.Specification
 import spock.lang.Subject
 
-class PharmacySearchServiceTest extends Specification {
+class ShelterSearchServiceTest extends Specification {
 
     @Subject
-    private PharmacySearchService pharmacySearchService
+    private ShelterSearchService shelterSearchService
 
-    private PharmacyRepositoryService pharmacyRepositoryService = Mock()
-    private PharmacyRedisTemplateService pharmacyRedisTemplateService = Mock()
+    private ShelterRepositoryService shelterRepositoryService = Mock()
+    private ShelterRedisTemplateService shelterRedisTemplateService = Mock()
 
-    private List<Pharmacy> pharmacyList
+    private List<Shelter> shelterList
 
     def setup() {
-        pharmacySearchService = new PharmacySearchService(pharmacyRepositoryService, pharmacyRedisTemplateService)
+        shelterSearchService = new ShelterSearchService(shelterRepositoryService, shelterRedisTemplateService)
 
-        pharmacyList = Lists.newArrayList(
-                Pharmacy.builder()
+        shelterList = Lists.newArrayList(
+                Shelter.builder()
                         .id(1L)
-                        .pharmacyName("호수온누리약국")
+                        .shelterName("호수온누리약국")
                         .latitude(37.60894036)
                         .longitude(127.029052)
                         .build(),
-                Pharmacy.builder()
+                Shelter.builder()
                         .id(2L)
-                        .pharmacyName("돌곶이온누리약국")
+                        .shelterName("돌곶이온누리약국")
                         .latitude(37.61040424)
                         .longitude(127.0569046)
                         .build()
         )
     }
 
-    def "searchPharmacyDtoList convert pharmacyList to pharmacyDtoList"() {
+    def "searchShelterDtoList convert shelterList to shelterDtoList"() {
         when:
-        pharmacyRepositoryService.findAll() >> pharmacyList
-        def result = pharmacySearchService.searchPharmacyDtoList()
+        shelterRepositoryService.findAll() >> shelterList
+        def result = shelterSearchService.searchShelterDtoList()
 
         then:
         result.size() == 2
         result.get(0).getId() == 1
-        result.get(0).getPharmacyName() == "호수온누리약국"
+        result.get(0).getShelterName() == "호수온누리약국"
         result.get(1).getId() == 2
-        result.get(1).getPharmacyName() == "돌곶이온누리약국"
+        result.get(1).getShelterName() == "돌곶이온누리약국"
     }
 
-    def "searchPharmacyDtoList return empty list if pharmacyList is empty"() {
+    def "searchShelterDtoList return empty list if shelterList is empty"() {
         when:
-        pharmacyRepositoryService.findAll() >> []
-        def result = pharmacySearchService.searchPharmacyDtoList()
+        shelterRepositoryService.findAll() >> []
+        def result = shelterSearchService.searchShelterDtoList()
 
         then:
         result.size() == 0
@@ -62,10 +62,10 @@ class PharmacySearchServiceTest extends Specification {
     def "레디스 장애시 DB를 이용 하여 약국 데이터 조회"() {
 
         when:
-        pharmacyRedisTemplateService.findAll() >> []
-        pharmacyRepositoryService.findAll() >> pharmacyList
+        shelterRedisTemplateService.findAll() >> []
+        shelterRepositoryService.findAll() >> shelterList
 
-        def result = pharmacySearchService.searchPharmacyDtoList()
+        def result = shelterSearchService.searchShelterDtoList()
 
         then:
         result.size() == 2

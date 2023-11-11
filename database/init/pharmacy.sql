@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.7.3-MariaDB, for debian-linux-gnu (x86_64)
 --
--- Host: 127.0.0.1    Database: pharmacy-recommendation
+-- Host: 127.0.0.1    Database: shelter-recommendation
 -- ------------------------------------------------------
 -- Server version	10.7.3-MariaDB-1:10.7.3+maria~focal
 
@@ -16,31 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pharmacy`
+-- Table structure for table `shelter`
 --
 
-DROP TABLE IF EXISTS `pharmacy`;
+DROP TABLE IF EXISTS `shelter`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pharmacy` (
+CREATE TABLE `shelter` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_date` datetime(6) DEFAULT NULL,
   `modified_date` datetime(6) DEFAULT NULL,
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
-  `pharmacy_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pharmacy_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shelter_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shelter_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pharmacy`
+-- Dumping data for table `shelter`
 --
 
-LOCK TABLES `pharmacy` WRITE;
-/*!40000 ALTER TABLE `pharmacy` DISABLE KEYS */;
-INSERT INTO `pharmacy` VALUES
+LOCK TABLES `shelter` WRITE;
+/*!40000 ALTER TABLE `shelter` DISABLE KEYS */;
+INSERT INTO `shelter` VALUES
 (1,'2022-10-17 23:46:34.982624','2022-10-17 23:46:34.982624',37.60894036,127.029052,'서울특별시 성북구 동소문로47길 12','호수온누리약국'),
 (2,'2022-10-17 23:46:35.025774','2022-10-17 23:46:35.025774',37.61040424,127.0569046,'서울특별시 성북구 화랑로 248','돌곶이온누리약국'),
 (3,'2022-10-17 23:46:35.028083','2022-10-17 23:46:35.028083',37.60101417,127.0331664,'서울특별시 성북구 종암로 123 홀리데이약국','홀리데이약국'),
@@ -242,7 +242,7 @@ INSERT INTO `pharmacy` VALUES
 (199,'2022-10-17 23:46:35.352539','2022-10-17 23:46:35.352539',37.60572843,127.0134857,'서울특별시 성북구 정릉로27길 41 (정릉동)','제창약국'),
 (200,'2022-10-17 23:46:35.353752','2022-10-17 23:46:35.353752',37.60441797,127.0394781,'서울특별시 성북구 화랑로5길 42 (하월곡동)','자산약국'),
 (201,'2022-10-17 23:46:35.355238','2022-10-17 23:46:35.355238',37.60247771,127.0130186,'서울특별시 성북구 아리랑로 117-7 (정릉동)','강원약국');
-/*!40000 ALTER TABLE `pharmacy` ENABLE KEYS */;
+/*!40000 ALTER TABLE `shelter` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

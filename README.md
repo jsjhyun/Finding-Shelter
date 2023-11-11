@@ -1,7 +1,7 @@
-# Pharmacy-Recommendation   
+# Shelter-Recommendation   
 
 해당 코드는 [패스트 캠퍼스 강의](https://fastcampus.co.kr/dev_online_befinal)에서 사용된다.   
-강의 각 챕터 별 완성 코드는 [링크](https://github.com/WonYong-Jang/Pharmacy-Recommendation-Version-Management)에서 
+강의 각 챕터 별 완성 코드는 [링크](https://github.com/WonYong-Jang/Shelter-Recommendation-Version-Management)에서 
 commit으로 기록 된다.    
  
 [외부 API(카카오 주소 검색 API](https://developers.kakao.com/docs/latest/ko/local/dev-guide))와 [공공 데이터(약국 현황 정보)](https://www.data.go.kr/data/15065023/fileData.do)를 활용함으로써 
@@ -42,7 +42,7 @@ commit으로 기록 된다.
     - base62를 통한 인코딩    
   - shorten url의 유효 기간은 30일로 제한 한다.   
   
-## Pharmacy Recommendation Process   
+## Shelter Recommendation Process   
 
 <img width="615" alt="스크린샷 2022-07-07 오후 1 58 39" src="https://user-images.githubusercontent.com/26623547/177694773-b53d1251-652f-41e6-8f19-c32b931d4b5b.png">         
 

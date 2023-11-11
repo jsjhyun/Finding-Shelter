@@ -1,25 +1,25 @@
-package com.example.demo.pharmacy.repository
+package com.example.demo.shelter.repository
 
 import com.example.demo.AbstractIntegrationContainerBaseTest
-import com.example.demo.pharmacy.entity.Pharmacy
-import com.example.demo.pharmacy.service.PharmacyRepositoryService
+import com.example.demo.shelter.entity.Shelter
+import com.example.demo.shelter.service.ShelterRepositoryService
 import org.springframework.beans.factory.annotation.Autowired
 
 import java.time.LocalDateTime
 
-class PharmacyRepositoryTest extends AbstractIntegrationContainerBaseTest {
+class ShelterRepositoryTest extends AbstractIntegrationContainerBaseTest {
 
     @Autowired
-    PharmacyRepositoryService pharmacyRepositoryService
+    ShelterRepositoryService shelterRepositoryService
 
     @Autowired
-    PharmacyRepository pharmacyRepository
+    ShelterRepository shelterRepository
 
     void setup() {
-        pharmacyRepository.deleteAll()
+        shelterRepository.deleteAll()
     }
 
-    def "PharmacyRepository save"() {
+    def "ShelterRepository save"() {
 
         given:
         String address = "서울 특별시 성북구 종암동"
@@ -27,23 +27,23 @@ class PharmacyRepositoryTest extends AbstractIntegrationContainerBaseTest {
         double latitude = 36.11
         double longitude = 128.11
 
-        def pharmacy = Pharmacy.builder()
-                .pharmacyAddress(address)
-                .pharmacyName(name)
+        def shelter = Shelter.builder()
+                .shelterAddress(address)
+                .shelterName(name)
                 .latitude(latitude)
                 .longitude(longitude)
                 .build()
         when:
-        def entity = pharmacyRepository.save(pharmacy)
+        def entity = shelterRepository.save(shelter)
 
         then:
-        entity.getPharmacyAddress() == address
-        entity.getPharmacyName() == name
+        entity.getShelterAddress() == address
+        entity.getShelterName() == name
         entity.getLatitude() == latitude
         entity.getLongitude() == longitude
     }
 
-    def "PharmacyRepository saveAll"() {
+    def "ShelterRepository saveAll"() {
 
         given:
         String address = "서울 특별시 성북구 종암동"
@@ -51,61 +51,61 @@ class PharmacyRepositoryTest extends AbstractIntegrationContainerBaseTest {
         double latitude = 36.11
         double longitude = 128.11
 
-        def pharmacy = Pharmacy.builder()
-                .pharmacyAddress(address)
-                .pharmacyName(name)
+        def shelter = Shelter.builder()
+                .shelterAddress(address)
+                .shelterName(name)
                 .latitude(latitude)
                 .longitude(longitude)
                 .build()
         when:
-        pharmacyRepositoryService.saveAll(Arrays.asList(pharmacy))
-        def result = pharmacyRepository.findAll()
+        shelterRepositoryService.saveAll(Arrays.asList(shelter))
+        def result = shelterRepository.findAll()
 
         then:
-        result.get(0).getPharmacyAddress() == address
-        result.get(0).getPharmacyName() == name
+        result.get(0).getShelterAddress() == address
+        result.get(0).getShelterName() == name
         result.get(0).getLatitude() == latitude
         result.get(0).getLongitude() == longitude
     }
 
-    def "PharmacyRepository delete"() {
+    def "ShelterRepository delete"() {
 
         given:
         String address = "서울 특별시 성북구 종암동"
         String name = "은혜 약국"
 
-        def pharmacy = Pharmacy.builder()
-                .pharmacyAddress(address)
-                .pharmacyName(name)
+        def shelter = Shelter.builder()
+                .shelterAddress(address)
+                .shelterName(name)
                 .build()
         when:
-        def entity = pharmacyRepository.save(pharmacy)
-        pharmacyRepository.deleteById(entity.getId())
+        def entity = shelterRepository.save(shelter)
+        shelterRepository.deleteById(entity.getId())
 
-        def result = pharmacyRepository.findAll()
+        def result = shelterRepository.findAll()
         then:
         result.size() == 0
     }
 
-    def "PharmacyRepository findById"() {
+    def "ShelterRepository findById"() {
 
         given:
         String address = "서울 특별시 성북구 종암동"
         String name = "은혜 약국"
 
-        def pharmacy = Pharmacy.builder()
-                .pharmacyAddress(address)
-                .pharmacyName(name)
+        def shelter = Shelter.builder()
+                .shelterAddress(address)
+                .shelterName(name)
                 .build()
         when:
-        def entity = pharmacyRepository.save(pharmacy)
-        def result = pharmacyRepository.findById(entity.getId()).orElse(null)
+        def entity = shelterRepository.save(shelter)
+        def result = shelterRepository.findById(entity.getId()).orElse(null)
 
 
         then:
         entity.getId() == result.getId()
-        entity.getPharmacyName() == result.getPharmacyName()
-        entity.getPharmacyAddress() == result.getPharmacyAddress()
+        entity.getShelterName() == result.getShelterName()
+        entity.getShelterAddress() == result.getShelterAddress()
     }
 
 
@@ -116,13 +116,13 @@ class PharmacyRepositoryTest extends AbstractIntegrationContainerBaseTest {
         String address = "서울 특별시 성북구 종암동"
         String name = "은혜 약국"
 
-        def pharmacy = Pharmacy.builder()
-                .pharmacyAddress(address)
-                .pharmacyName(name)
+        def shelter = Shelter.builder()
+                .shelterAddress(address)
+                .shelterName(name)
                 .build()
         when:
-        pharmacyRepository.save(pharmacy)
-        def result = pharmacyRepository.findAll()
+        shelterRepository.save(shelter)
+        def result = shelterRepository.findAll()
         then:
         result.get(0).getCreatedDate().isAfter(now)
         result.get(0).getModifiedDate().isAfter(now)

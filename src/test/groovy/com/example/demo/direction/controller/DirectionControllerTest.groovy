@@ -25,7 +25,7 @@ class DirectionControllerTest extends Specification {
         given:
         String encodedId = "r"
 
-        String redirectURL = "https://map.kakao.com/link/map/pharmacy,38.11,128.11"
+        String redirectURL = "https://map.kakao.com/link/map/shelter,38.11,128.11"
 
         when:
         directionService.findDirectionUrlById(encodedId) >> redirectURL

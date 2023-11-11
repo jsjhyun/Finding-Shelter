@@ -4,7 +4,7 @@ import com.example.demo.api.dto.DocumentDto;
 import com.example.demo.api.service.KakaoCategorySearchService;
 import com.example.demo.direction.entity.Direction;
 import com.example.demo.direction.repository.DirectionRepository;
-import com.example.demo.pharmacy.service.PharmacySearchService;
+import com.example.demo.shelter.service.ShelterSearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class DirectionService {
     private static final double RADIUS_KM = 10.0; // 반경 10 km
     private static final String DIRECTION_BASE_URL = "https://map.kakao.com/link/map/";
 
-    private final PharmacySearchService pharmacySearchService;
+    private final ShelterSearchService shelterSearchService;
     private final DirectionRepository directionRepository;
     private final Base62Service base62Service;
 
@@ -45,7 +45,7 @@ public class DirectionService {
         Long decodedId = base62Service.decodeDirectionId(encodedId);
         Direction direction = directionRepository.findById(decodedId).orElse(null);
 
-        String params = String.join(",", direction.getTargetPharmacyName(),
+        String params = String.join(",", direction.getTargetShelterName(),
                 String.valueOf(direction.getTargetLatitude()), String.valueOf(direction.getTargetLongitude()));
         String result = UriComponentsBuilder.fromHttpUrl(DIRECTION_BASE_URL + params)
                 .toUriString();
@@ -56,19 +56,19 @@ public class DirectionService {
     public List<Direction> buildDirectionList(DocumentDto documentDto) {
         if(Objects.isNull(documentDto)) return Collections.emptyList();
 
-        return pharmacySearchService.searchPharmacyDtoList()
-                .stream().map(pharmacyDto ->
+        return shelterSearchService.searchShelterDtoList()
+                .stream().map(shelterDto ->
                         Direction.builder()
                                 .inputAddress(documentDto.getAddressName())
                                 .inputLatitude(documentDto.getLatitude())
                                 .inputLongitude(documentDto.getLongitude())
-                                .targetPharmacyName(pharmacyDto.getPharmacyName())
-                                .targetAddress(pharmacyDto.getPharmacyAddress())
-                                .targetLatitude(pharmacyDto.getLatitude())
-                                .targetLongitude(pharmacyDto.getLongitude())
+                                .targetShelterName(shelterDto.getShelterName())
+                                .targetAddress(shelterDto.getShelterAddress())
+                                .targetLatitude(shelterDto.getLatitude())
+                                .targetLongitude(shelterDto.getLongitude())
                                 .distance(
                                         calculateDistance(documentDto.getLatitude(), documentDto.getLongitude(),
-                                                pharmacyDto.getLatitude(), pharmacyDto.getLongitude()))
+                                                shelterDto.getLatitude(), shelterDto.getLongitude()))
                                 .build())
                 .filter(direction -> direction.getDistance() <= RADIUS_KM)
                 .sorted(Comparator.comparing(Direction::getDistance))
@@ -76,19 +76,19 @@ public class DirectionService {
                 .collect(Collectors.toList());
     }
 
-    // pharmacy search by category kakao api
+    // shelter search by category kakao api
     public List<Direction> buildDirectionListByCategoryApi(DocumentDto inputDocumentDto) {
         if(Objects.isNull(inputDocumentDto)) return Collections.emptyList();
 
         return kakaoCategorySearchService
-                .requestPharmacyCategorySearch(inputDocumentDto.getLatitude(), inputDocumentDto.getLongitude(), RADIUS_KM)
+                .requestShelterCategorySearch(inputDocumentDto.getLatitude(), inputDocumentDto.getLongitude(), RADIUS_KM)
                 .getDocumentList()
                 .stream().map(resultDocumentDto ->
                         Direction.builder()
                                 .inputAddress(inputDocumentDto.getAddressName())
                                 .inputLatitude(inputDocumentDto.getLatitude())
                                 .inputLongitude(inputDocumentDto.getLongitude())
-                                .targetPharmacyName(resultDocumentDto.getPlaceName())
+                                .targetShelterName(resultDocumentDto.getPlaceName())
                                 .targetAddress(resultDocumentDto.getAddressName())
                                 .targetLatitude(resultDocumentDto.getLatitude())
                                 .targetLongitude(resultDocumentDto.getLongitude())

@@ -1,4 +1,4 @@
-package com.example.demo.pharmacy.entity;
+package com.example.demo.shelter.entity;
 
 import com.example.demo.BaseTimeEntity;
 import lombok.AllArgsConstructor;
@@ -11,23 +11,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "pharmacy")
+@Entity(name = "shelter")
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Pharmacy extends BaseTimeEntity {
+public class Shelter extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String pharmacyName;
-    private String pharmacyAddress;
+    private String shelterName;
+    private String shelterAddress;
     private double latitude;
     private double longitude;
 
-    public void changePharmacyAddress(String address) {
-        this.pharmacyAddress = address;
+    public void changeShelterAddress(String address) {
+        this.shelterAddress = address;
     }
 }

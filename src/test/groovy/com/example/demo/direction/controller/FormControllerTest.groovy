@@ -1,7 +1,7 @@
 package com.example.demo.direction.controller
 
 import com.example.demo.direction.dto.OutputDto
-import com.example.demo.pharmacy.service.PharmacyRecommendationService
+import com.example.demo.shelter.service.ShelterRecommendationService
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.ResultActions
@@ -18,21 +18,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class FormControllerTest extends Specification {
 
     private MockMvc mockMvc
-    private PharmacyRecommendationService pharmacyRecommendationService = Mock()
+    private ShelterRecommendationService shelterRecommendationService = Mock()
     private List<OutputDto> outputDtoList
 
     def setup() {
         // FormController MockMvc 객체로 만든다.
-        mockMvc = MockMvcBuilders.standaloneSetup(new FormController(pharmacyRecommendationService))
+        mockMvc = MockMvcBuilders.standaloneSetup(new FormController(shelterRecommendationService))
                 .build()
 
         outputDtoList = new ArrayList<>()
         outputDtoList.addAll(
                 OutputDto.builder()
-                        .pharmacyName("pharmacy1")
+                        .shelterName("shelter1")
                         .build(),
                 OutputDto.builder()
-                        .pharmacyName("pharmacy2")
+                        .shelterName("shelter2")
                         .build()
         )
     }
@@ -59,7 +59,7 @@ class FormControllerTest extends Specification {
                 .param("address", inputAddress))
 
         then:
-        1 * pharmacyRecommendationService.recommendPharmacyList(argument -> {
+        1 * shelterRecommendationService.recommendShelterList(argument -> {
             assert argument == inputAddress // mock 객체의 argument 검증
         }) >> outputDtoList
 

@@ -1,6 +1,6 @@
 package com.example.demo.util;
 
-import com.example.demo.pharmacy.dto.PharmacyDto;
+import com.example.demo.shelter.dto.ShelterDto;
 import com.opencsv.CSVReader;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,9 +15,9 @@ import java.util.stream.IntStream;
 @Slf4j
 public class CsvUtils {
 
-    public static List<PharmacyDto> convertToPharmacyDtoList() {
+    public static List<ShelterDto> convertToShelterDtoList() {
 
-        String file = "./pharmacy.csv";
+        String file = "./shelter.csv";
         List<List<String>> csvList = new ArrayList<>();
         try (CSVReader csvReader = new CSVReader(new FileReader(file))) {
             String[] values = null;
@@ -25,7 +25,7 @@ public class CsvUtils {
                 csvList.add(Arrays.asList(values));
             }
         } catch (IOException e) {
-            log.error("CsvUtils convertToPharmacyDtoList Fail: {}", e.getMessage());
+            log.error("CsvUtils convertToShelterDtoList Fail: {}", e.getMessage());
         }
 
         return IntStream.range(1, csvList.size()).mapToObj(index -> {
@@ -33,9 +33,9 @@ public class CsvUtils {
 
             String[] split = rowList.get(1).split(",");
 
-            return PharmacyDto.builder()
-                    .pharmacyName(rowList.get(0))
-                    .pharmacyAddress(split[0])
+            return ShelterDto.builder()
+                    .shelterName(rowList.get(0))
+                    .shelterAddress(split[0])
                     .latitude(Double.parseDouble(rowList.get(4)))
                     .longitude(Double.parseDouble(rowList.get(5)))
                     .build();

@@ -26,7 +26,7 @@ public class KakaoCategorySearchService {
     @Value("${kakao.rest.api.key}")
     private String kakaoRestApiKey;
 
-    public KakaoApiResponseDto requestPharmacyCategorySearch(double latitude, double longitude, double radius) {
+    public KakaoApiResponseDto requestShelterCategorySearch(double latitude, double longitude, double radius) {
 
         URI uri = kakaoUriBuilderService.buildUriByCategorySearch(latitude, longitude, radius, PHARMACY_CATEGORY);
 

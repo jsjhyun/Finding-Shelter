@@ -1,6 +1,6 @@
-package com.example.demo.pharmacy.cache;
+package com.example.demo.shelter.cache;
 
-import com.example.demo.pharmacy.dto.PharmacyDto;
+import com.example.demo.shelter.dto.ShelterDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import java.util.Objects;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class PharmacyRedisTemplateService {
+public class ShelterRedisTemplateService {
 
     private static final String CACHE_KEY = "PHARMACY";
 
@@ -32,48 +32,48 @@ public class PharmacyRedisTemplateService {
         this.hashOperations = redisTemplate.opsForHash();
     }
 
-    public void save(PharmacyDto pharmacyDto) {
-        if(Objects.isNull(pharmacyDto) || Objects.isNull(pharmacyDto.getId())) {
+    public void save(ShelterDto shelterDto) {
+        if(Objects.isNull(shelterDto) || Objects.isNull(shelterDto.getId())) {
             log.error("Required Values must not be null");
             return;
         }
 
         try {
             hashOperations.put(CACHE_KEY,
-                    pharmacyDto.getId().toString(),
-                    serializePharmacyDto(pharmacyDto));
-            log.info("[PharmacyRedisTemplateService save success] id: {}", pharmacyDto.getId());
+                    shelterDto.getId().toString(),
+                    serializeShelterDto(shelterDto));
+            log.info("[ShelterRedisTemplateService save success] id: {}", shelterDto.getId());
         } catch (Exception e) {
-            log.error("[PharmacyRedisTemplateService save error] {}", e.getMessage());
+            log.error("[ShelterRedisTemplateService save error] {}", e.getMessage());
         }
     }
 
-    public List<PharmacyDto> findAll() {
+    public List<ShelterDto> findAll() {
 
         try {
-            List<PharmacyDto> list = new ArrayList<>();
+            List<ShelterDto> list = new ArrayList<>();
             for (String value : hashOperations.entries(CACHE_KEY).values()) {
-                PharmacyDto pharmacyDto = deserializePharmacyDto(value);
-                list.add(pharmacyDto);
+                ShelterDto shelterDto = deserializeShelterDto(value);
+                list.add(shelterDto);
             }
             return list;
 
         } catch (Exception e) {
-            log.error("[PharmacyRedisTemplateService findAll error]: {}", e.getMessage());
+            log.error("[ShelterRedisTemplateService findAll error]: {}", e.getMessage());
             return Collections.emptyList();
         }
     }
 
     public void delete(Long id) {
         hashOperations.delete(CACHE_KEY, String.valueOf(id));
-        log.info("[PharmacyRedisTemplateService delete]: {} ", id);
+        log.info("[ShelterRedisTemplateService delete]: {} ", id);
     }
 
-    private String serializePharmacyDto(PharmacyDto pharmacyDto) throws JsonProcessingException {
-        return objectMapper.writeValueAsString(pharmacyDto);
+    private String serializeShelterDto(ShelterDto shelterDto) throws JsonProcessingException {
+        return objectMapper.writeValueAsString(shelterDto);
     }
 
-    private PharmacyDto deserializePharmacyDto(String value) throws JsonProcessingException {
-        return objectMapper.readValue(value, PharmacyDto.class);
+    private ShelterDto deserializeShelterDto(String value) throws JsonProcessingException {
+        return objectMapper.readValue(value, ShelterDto.class);
     }
 }

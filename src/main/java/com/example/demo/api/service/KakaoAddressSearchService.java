@@ -38,12 +38,13 @@ public class KakaoAddressSearchService {
         if(ObjectUtils.isEmpty(address)) return null;
 
         URI uri = kakaoUriBuilderService.buildUriByAddressSearch(address);
-
+        //카카오 api에서 거리 계산 및 주소를 찾을 수 있도록 api를 전송하기 위해 여기서 uri를 만든다
         HttpHeaders headers = new HttpHeaders();
         headers.set(HttpHeaders.AUTHORIZATION, "KakaoAK " + kakaoRestApiKey);
         HttpEntity httpEntity = new HttpEntity<>(headers);
 
         return restTemplate.exchange(uri, HttpMethod.GET, httpEntity, KakaoApiResponseDto.class).getBody();
+        //restTemplate.exchange()로 responseEntity를 돌려받는다
     }
 
     @Recover

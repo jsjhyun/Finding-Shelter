@@ -1,4 +1,4 @@
-package com.example.demo.pharmacy.dto;
+package com.example.demo.shelter.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +11,11 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PharmacyDto {
+public class ShelterDto {
 
     private Long id;
-    private String pharmacyName;
-    private String pharmacyAddress;
+    private String shelterName;
+    private String shelterAddress;
     private double latitude;
     private double longitude;
 }
