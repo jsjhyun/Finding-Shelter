@@ -31,13 +31,13 @@ public class CsvUtils {
         return IntStream.range(1, csvList.size()).mapToObj(index -> {
             List<String> rowList = csvList.get(index);
 
-            String[] split = rowList.get(1).split(",");
+            String[] split = rowList.get(2).split(",");
 
             return ShelterDto.builder()
-                    .shelterName(rowList.get(0))
+                    .shelterName(rowList.get(1))
                     .shelterAddress(split[0])
-                    .latitude(Double.parseDouble(rowList.get(4)))
-                    .longitude(Double.parseDouble(rowList.get(5)))
+                    .latitude(Double.parseDouble(rowList.get(3)))
+                    .longitude(Double.parseDouble(rowList.get(4)))
                     .build();
         }).collect(Collectors.toList());
     }
