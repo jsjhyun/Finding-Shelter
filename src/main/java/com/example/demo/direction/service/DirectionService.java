@@ -1,7 +1,6 @@
 package com.example.demo.direction.service;
 
 import com.example.demo.api.dto.DocumentDto;
-import com.example.demo.api.service.KakaoCategorySearchService;
 import com.example.demo.direction.entity.Direction;
 import com.example.demo.direction.repository.DirectionRepository;
 import com.example.demo.shelter.service.ShelterSearchService;
@@ -31,7 +30,6 @@ public class DirectionService {
     private final DirectionRepository directionRepository;
     private final Base62Service base62Service;
 
-    private final KakaoCategorySearchService kakaoCategorySearchService;
 
     @Transactional
     public List<Direction> saveAll(List<Direction> directionList) {
@@ -76,27 +74,7 @@ public class DirectionService {
                 .collect(Collectors.toList());
     }
 
-    // shelter search by category kakao api
-    public List<Direction> buildDirectionListByCategoryApi(DocumentDto inputDocumentDto) {
-        if(Objects.isNull(inputDocumentDto)) return Collections.emptyList();
-
-        return kakaoCategorySearchService
-                .requestShelterCategorySearch(inputDocumentDto.getLatitude(), inputDocumentDto.getLongitude(), RADIUS_KM)
-                .getDocumentList()
-                .stream().map(resultDocumentDto ->
-                        Direction.builder()
-                                .inputAddress(inputDocumentDto.getAddressName())
-                                .inputLatitude(inputDocumentDto.getLatitude())
-                                .inputLongitude(inputDocumentDto.getLongitude())
-                                .targetShelterName(resultDocumentDto.getPlaceName())
-                                .targetAddress(resultDocumentDto.getAddressName())
-                                .targetLatitude(resultDocumentDto.getLatitude())
-                                .targetLongitude(resultDocumentDto.getLongitude())
-                                .distance(resultDocumentDto.getDistance() * 0.001) // km 단위
-                                .build())
-                .limit(MAX_SEARCH_COUNT)
-                .collect(Collectors.toList());
-    }
+   
 
     // Haversine formula
     private double calculateDistance(double lat1, double lon1, double lat2, double lon2) {

@@ -7,6 +7,8 @@ import com.example.demo.direction.dto.OutputDto;
 import com.example.demo.direction.entity.Direction;
 import com.example.demo.direction.service.Base62Service;
 import com.example.demo.direction.service.DirectionService;
+import com.github.jknack.handlebars.internal.lang3.ObjectUtils.Null;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +17,10 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,24 +37,24 @@ public class ShelterRecommendationService {
     @Value("${shelter.recommendation.base.url}")
     private String baseUrl;
 
-    public List<OutputDto> recommendShelterList(String address) {
+    public Map<Integer, OutputDto> recommendShelterList(String address) {
 
         KakaoApiResponseDto kakaoApiResponseDto = kakaoAddressSearchService.requestAddressSearch(address);
         //List로 변환하기 전 여기서 주소를 찾는다.
         if (Objects.isNull(kakaoApiResponseDto) || CollectionUtils.isEmpty(kakaoApiResponseDto.getDocumentList())) {
             log.error("[ShelterRecommendationService.recommendShelterList fail] Input address: {}", address);
-            return Collections.emptyList();
+            return Map.of();
         }
 
         DocumentDto documentDto = kakaoApiResponseDto.getDocumentList().get(0);
 
         List<Direction> directionList = directionService.buildDirectionList(documentDto);
         //List<Direction> directionList = directionService.buildDirectionListByCategoryApi(documentDto);
-
+        AtomicInteger index = new AtomicInteger(1);
         return directionService.saveAll(directionList)
                 .stream()
                 .map(this::convertToOutputDto)
-                .collect(Collectors.toList());
+                .collect(Collectors.toMap(i -> index.getAndIncrement(), Function.identity()));
     }
 
     private OutputDto convertToOutputDto(Direction direction) {
