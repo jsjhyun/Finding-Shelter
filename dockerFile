@@ -1,0 +1,15 @@
+FROM openjdk:17-jdk
+
+LABEL maintainer="cyh10000ok@daum.net"
+
+RUN 
+
+ARG JAR_FILE = build/libs/app.jar
+
+ADD ${JAR_FILE} docker-springboot.jar
+
+
+EXPOSE 8080
+EXPOSE 3306
+
+ENTRYPOINT ["java", "-jar", "/docker-springboot.jar"]
