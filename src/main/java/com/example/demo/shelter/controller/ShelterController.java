@@ -6,14 +6,12 @@ import com.example.demo.shelter.entity.Shelter;
 import com.example.demo.shelter.service.ShelterRepositoryService;
 import com.example.demo.util.CsvUtils;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class ShelterController {

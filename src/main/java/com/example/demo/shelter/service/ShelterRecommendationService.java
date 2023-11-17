@@ -7,7 +7,6 @@ import com.example.demo.direction.dto.OutputDto;
 import com.example.demo.direction.entity.Direction;
 import com.example.demo.direction.service.Base62Service;
 import com.example.demo.direction.service.DirectionService;
-import com.github.jknack.handlebars.internal.lang3.ObjectUtils.Null;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
