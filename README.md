@@ -80,7 +80,7 @@
 
 
 ## 🛠 Tech Stack   
-**Back-End Server**
+**Back-End**
 - JDK 17
 - Spring Boot 3.1.5
 - Spring Data JPA
@@ -90,7 +90,7 @@
 - MariaDB
 - Spock
   
-**Front-End Server**
+**Front-End**
 - React
 - Javascript
 
