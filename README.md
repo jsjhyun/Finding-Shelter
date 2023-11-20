@@ -24,7 +24,7 @@
     - base62를 통한 인코딩    
   - shorten url의 유효 기간은 30일로 제한한다.
 
-  - [외부 API(카카오 주소 검색 API](https://developers.kakao.com/docs/latest/ko/local/dev-guide))와 [공공 데이터(대피소 현황 정보)를 활용헀다.
+[외부 API(카카오 주소 검색 API](https://developers.kakao.com/docs/latest/ko/local/dev-guide))와 [공공 데이터(대피소 현황 정보)를 활용헀다.
 추천된 대피소 길 안내는 [카카오 지도 및 로드뷰 바로가기 URL](https://apis.map.kakao.com/web/guide/#routeurl)로 제공된다. 
 
 
