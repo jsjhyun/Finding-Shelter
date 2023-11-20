@@ -30,9 +30,6 @@
 추천된 대피소 길 안내는 [카카오 지도 및 로드뷰 바로가기 URL](https://apis.map.kakao.com/web/guide/#routeurl)로 제공된다. 
 
 
-## 📲 설치 방법
-
-
 ## 💁 사용 방법 💁 
 
 **대피소 찾기 페이지**
@@ -59,7 +56,8 @@
 
 - ex) 길안내 URL : http://localhost:8080/dir/3Ta
     - 로드뷰 URL : https://map.kakao.com/link/roadview/37.402056,127.108212
-
+ 
+## 📲 설치 방법
 
 ## ⚙ Shelter Recommendation Process   
 
