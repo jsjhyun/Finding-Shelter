@@ -1,4 +1,5 @@
-# Finding_Shelter   
+# ![image](https://github.com/KwangWoonUnivOpenSource/Finding_Shelter-BE/assets/105183327/82f06a89-3c1f-456b-bfc7-5e549602b830)
+Finding_Shelter   
 🔍 주소 정보를 입력하면 빠르게 가까운 대피소 3곳을 알려주는 서비스
   
 
