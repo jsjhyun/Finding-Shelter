@@ -29,10 +29,10 @@
 추천된 대피소 길 안내는 [카카오 지도 및 로드뷰 바로가기 URL](https://apis.map.kakao.com/web/guide/#routeurl)로 제공된다. 
 
 
-## 설치 방법
+## 📲 설치 방법
 
 
-## 사용 방법 
+## 💁 사용 방법 💁 
 
 **대피소 찾기 페이지**
 
@@ -67,7 +67,7 @@
 <img width="457" alt="2023-11-15 174344" src="https://github.com/KwangWoonUnivOpenSource/Finding_Shelter-BE/assets/105183327/c6c949cb-9eb0-4935-b2f1-87e03ca12a5f">
 
 
-## Feature List   
+## 📑 Feature List   
 
 - Spring Data JPA를 이용한 CRUD 메서드 구현하기      
 - Spock를 이용한 테스트 코드 작성하기     
@@ -79,8 +79,8 @@
 - Spring retry를 이용한 재처리 구현하기 (카카오 API의 네트워크 오류 등에 대한 재처리)
 
 
-## Tech Stack   
-
+## 🛠 Tech Stack   
+**Back-End Server**
 - JDK 17
 - Spring Boot 3.1.5
 - Spring Data JPA
@@ -88,10 +88,14 @@
 - Lombok
 - Github
 - MariaDB
-- Spock    
+- Spock
+  
+**Front-End Server**
+- React
+- Javascript
 
 
-## License 
+## 🧾 License 
 이 프로젝트는 MIT License를 따른다.
 
 이 소프트웨어를 누구라도 무상으로 제한없이 취급해도 좋다. 단, 저작권 표시 및 이 허가 표시를 소프트웨어의 모든 복제물 또는 중요한 부분에 기재해야 한다.
