@@ -1,9 +1,9 @@
-# Finding_Shelter   
-🔍 주소 정보를 입력하면 빠르게 가까운 대피소 3곳을 알려주는 서비스
+# 🔍 Finding_Shelter   
+주소 정보를 입력하면 빠르게 가까운 대피소 3곳을 알려주는 서비스
 - 위급상황에 어디로 가야할지 안내하고, 각 상황에 반드시 해야할 지침을 제시하는 웹사이트를 제공하고자 한다.
   
 
-## 소프트웨어의 기능 
+## 💡 소프트웨어의 기능 
 
   - 해당 서비스로 주소 정보를 입력하여 요청하면 위치 기준에서 가까운 대피소 3곳을 추출한다.
   - 주소는 도로명 주소 또는 지번을 입력하여 요청 받는다.
@@ -58,11 +58,11 @@
     - 로드뷰 URL : https://map.kakao.com/link/roadview/37.402056,127.108212
 
 
-## Shelter Recommendation Process   
+## ⚙ Shelter Recommendation Process   
 
 <img width="484" alt="2023-11-15 174420" src="https://github.com/KwangWoonUnivOpenSource/Finding_Shelter-BE/assets/105183327/81c7c613-0e9a-4a97-b8ee-e1d950100d2b">
 
-## Direction Shorten Url Process
+## ⚙ Direction Shorten Url Process
 
 <img width="457" alt="2023-11-15 174344" src="https://github.com/KwangWoonUnivOpenSource/Finding_Shelter-BE/assets/105183327/c6c949cb-9eb0-4935-b2f1-87e03ca12a5f">
 
