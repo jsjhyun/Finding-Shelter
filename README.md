@@ -46,6 +46,9 @@
  
 ## 📲 설치 방법
 
+https://findin-shelter-fe.vercel.app/
+
+
 ## ⚙ Shelter Recommendation Process   
 
 <img width="484" alt="2023-11-15 174420" src="https://github.com/KwangWoonUnivOpenSource/Finding_Shelter-BE/assets/105183327/81c7c613-0e9a-4a97-b8ee-e1d950100d2b">
@@ -65,6 +68,8 @@
 - base62를 이용한 shorten url 개발하기 (길안내 URL)
 - redis를 이용하여 성능 최적화하기
 - Spring retry를 이용한 재처리 구현하기 (카카오 API의 네트워크 오류 등에 대한 재처리)
+- vercel을 이용한 배포하기
+- microsoft azure로 서버 구축하기 
 
 
 ## 🛠 Tech Stack   
