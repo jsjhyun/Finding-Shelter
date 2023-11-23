@@ -73,7 +73,6 @@ https://findin-shelter-fe.vercel.app/
 
 
 ## 🛠 Tech Stack   
-**Back-End**
 - JDK 17
 - Spring Boot 3.1.5
 - Spring Data JPA
@@ -82,11 +81,6 @@ https://findin-shelter-fe.vercel.app/
 - Github
 - MariaDB
 - Spock
-  
-**Front-End**
-- React
-- Javascript
-
 
 ## 🧾 License 
 이 프로젝트는 MIT License를 따른다.
