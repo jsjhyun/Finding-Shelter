@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    {{> header}}
+    <!-- 외부 CSS 파일 연결 -->
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/global.css">
+</head>
+<body class= "main-body">
+    <div class="main-container">
+        <!-- 제목 -->
+        <h1 class="main-title">빠른 대피소 찾기</h1>
+
+        <!-- 검색 섹션 -->
+        <div class="search-container">
+            <form action="/search" method="post" class="search-form" onsubmit="return validateForm()">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="address_kakao" name="address"
+                           placeholder="현재 위치를 입력해주세요." readonly>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn primary-btn">Go!</button>
+                    <button type="button" class="btn secondary-btn" onclick="location.href='/notification'">대피 요령</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+ <!-- Footer Include -->
+    {{> footer}}
+
+    <!-- Kakao 우편번호 서비스 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        window.onload = function () {
+            document.getElementById("address_kakao").addEventListener("click", function () {
+                new daum.Postcode({
+                    oncomplete: function (data) {
+                        document.getElementById("address_kakao").value = data.address;
+                    }
+                }).open();
+            });
+        };
+    </script>
+    <script>
+        function validateForm() {
+            const addressInput = document.getElementById('address_kakao').value.trim();
+            if (!addressInput) {
+                alert('주소를 입력하세요.');
+                return false; // 폼 제출 방지
+            }
+            return true; // 폼 제출 허용
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+/* 공통 스타일 */
+.main-body {
+    font-family: 'Arial', sans-serif;
+    background-color: #00002C;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-title {
+    margin: 20px 0;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+
+/* 메인 컨테이너 */
+.main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* 검색 섹션 */
+.search-container {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #495057;
+}
+
+.search-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.icon-button img {
+    width: 20px;
+    height: 20px;
+}
+
+/* 버튼 그룹 */
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn {
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.primary-btn {
+    background-color: #8361B1;
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: #8361B1;
+}
+
+.secondary-btn {
+    background-color: white;
+    color: #8361B1;
+    border: 1px solid #8361B1;
+}
+
+.secondary-btn:hover {
+    background-color: #8361B1;
+    color: white;
+}
+
+/* Footer */
+.footer {
+    background-color: black;
+    color: #f8f9fa;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    margin-top: auto;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}

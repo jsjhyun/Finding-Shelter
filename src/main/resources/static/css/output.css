@@ -1,0 +1,97 @@
+/* 공통 스타일 */
+.output-body {
+    font-family: 'Arial', sans-serif;
+    background-color: white; /* 메인 배경색과 동일 */
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+h2.output-h2-title {
+    margin-top: 100px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: black; /* 메인 제목과 동일 */
+}
+
+/* 결과 테이블 */
+table.output-table {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.output-table th {
+    background-color: #8361B1;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.output-table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    color: #495057;
+}
+
+.output-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.output-table tr:hover {
+    background-color: #e9ecef;
+}
+
+.output-grid-image {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.output-grid-image img {
+    margin: 0 10px;
+    width: 50%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* body와 html에 Flexbox 설정 */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 콘텐츠를 Flexbox로 확장 */
+.container {
+    flex: 1;
+}
+
+/* Footer 스타일 */
+footer {
+    background-color: black;
+    color: #f8f9fa;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* 링크 스타일 */
+footer a {
+    color: #f8f9fa;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
