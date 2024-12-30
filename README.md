@@ -1,6 +1,6 @@
-## Finding_Shelter
+<h2 align="center">Finding_Shelter</h2>
 
-<img width="1375" alt="스크린샷 2024-12-27 오후 5 51 26" src="https://github.com/user-attachments/assets/daeaff24-14c5-4e06-adfc-5d68544c7d4b" />
+<img align="center" width="554" alt="스크린샷 2024-12-30 오후 6 09 11" src="https://github.com/user-attachments/assets/e1fce1ed-cca7-4892-9b55-c4c64122a1a1" />
 
 > 2023년 5월 31일 오전 06시 32분 서울특별시 2023년 북한 천리마-1 발사 사건에 대한 경계경보를 발령했으나 이후 오발령으로 밝혀진 사건을 계기로 대피소 찾기 서비스를 만들게 되었다. 
 
@@ -61,6 +61,8 @@ KakaoMap으로 이동하여 길 찾기를 할 수 있도록 한다.
 > “로드뷰 보기”를 클릭하면 대피소 주변을 확인하여 정확한 위치를 파악할 수 있도록 한다.
 
 <img width="1373" alt="스크린샷 2024-12-27 오후 5 56 27" src="https://github.com/user-attachments/assets/f11992ae-767e-458b-a41a-ef518252d23f" />
+
+</br>
 
 </br>
 
