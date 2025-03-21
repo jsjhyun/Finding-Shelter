@@ -30,11 +30,8 @@ public class CsvUtils {
         return IntStream.range(1, csvList.size()).mapToObj(index -> {
             List<String> rowList = csvList.get(index);
 
-            String[] split = rowList.get(1).split(",");
-
         return ShelterDto.builder()
                 .shelterName(rowList.get(1))
-//                .shelterAddress(split[0])
                 .shelterAddress(rowList.get(2))
                 .latitude(Double.parseDouble(rowList.get(3)))
                 .longitude(Double.parseDouble(rowList.get(4)))

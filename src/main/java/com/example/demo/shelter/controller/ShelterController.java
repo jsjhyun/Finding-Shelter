@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 public class ShelterController {
-    // DB data -> Redis
     private final ShelterRepositoryService shelterRepositoryService;
     private final ShelterRedisTemplateService shelterRedisTemplateService;
 
@@ -28,27 +27,6 @@ public class ShelterController {
         saveCsvToRedis();
 
         return "save success";
-    }
-
-    public void saveCsvToDatabase() {
-        List<Shelter> shelterList = loadShelterList();
-        shelterRepositoryService.saveAll(shelterList);
-    }
-
-    public void saveCsvToRedis() {
-
-        List<ShelterDto> shelterDtoList = shelterRepositoryService.findAll()
-                .stream().map(shelter -> ShelterDto.builder()
-                        .id(shelter.getId())
-                        .shelterName(shelter.getShelterName())
-                        .shelterAddress(shelter.getShelterAddress())
-                        .latitude(shelter.getLatitude())
-                        .longitude(shelter.getLongitude())
-                        .build())
-                .collect(Collectors.toList());
-
-        shelterDtoList.forEach(shelterRedisTemplateService::save);
-
     }
 
     private List<Shelter> loadShelterList() {
@@ -63,4 +41,24 @@ public class ShelterController {
                                 .build())
                 .collect(Collectors.toList());
     }
+
+    public void saveCsvToRedis() {
+        List<ShelterDto> shelterDtoList = shelterRepositoryService.findAll()
+                .stream().map(shelter -> ShelterDto.builder()
+                        .id(shelter.getId())
+                        .shelterName(shelter.getShelterName())
+                        .shelterAddress(shelter.getShelterAddress())
+                        .latitude(shelter.getLatitude())
+                        .longitude(shelter.getLongitude())
+                        .build())
+                .collect(Collectors.toList());
+
+        shelterDtoList.forEach(shelterRedisTemplateService::save);
+    }
+
+    public void saveCsvToDatabase() {
+        List<Shelter> shelterList = loadShelterList();
+        shelterRepositoryService.saveAll(shelterList);
+    }
+
 }

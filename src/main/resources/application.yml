@@ -1,3 +1,7 @@
+java:
+  runtime:
+    version: 17
+
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
@@ -20,4 +24,6 @@ kakao:
 shelter:
   recommendation:
     base:
-      url: http://localhost:8080/dir/
+      url: http://localhost:8000/dir/
+server:
+  port: 8000
