@@ -12,6 +12,4 @@ public class MetaDto {
 
     @JsonProperty("total_count")
     private Integer totalCount;
-
-
 }
