@@ -141,8 +141,11 @@ fabric.properties
 hs_err_pid*
 replay_pid*
 
-/docker-compose
+/docker-compose.yml
 /Dockerfile
 /dump.rdb
 /shelter.csv
+/build/
+/database/
+.gradle/
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij
